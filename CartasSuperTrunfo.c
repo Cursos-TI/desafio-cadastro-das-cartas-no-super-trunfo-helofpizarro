@@ -1,44 +1,41 @@
 #include <stdio.h>
 
 int main() {
-    int codigoDaCidade;
-    char nome[50];
-    unsigned long int populacao;
-    float area;
-    int pib;
-    int numerosDePontosTuristicos;
-    float densidadePopulacional;
-    float pibPerCapta;
+  char nome1[50], nome2[50];
+    unsigned long int pop1, pop2;
+    float area1, area2, pib1, pib2;
+    int pontos1, pontos2;
 
-    printf("Digite o código da cidade: \n");
-    scanf("%d", &codigoDaCidade);
-    printf("Digite o nome da cidade: \n");
-    scanf("%s",nome);
-    printf("Digite a população da cidade: \n");
-    scanf("%d", &populacao);
-    printf("Digite a área da cidade (em km²): \n");
-    scanf("%f", &area);
-    printf("Digite o PIB da cidade: \n");
-    scanf("%d", &pib);
-    printf("Digite o número de pontos turísticos da cidade: \n");
-    scanf("%d", &numerosDePontosTuristicos);
-    printf("Digite a densidade populacional: \n");
-    scanf("%f" , &densidadePopulacional);
-    printf("Digite o PIB per Capita: \n");
-    scanf("%f", &pibPerCapta);
+    // Atributos calculados
+    float dens1, dens2;
+    float pc1, pc2;
+    float sp1, sp2;
 
-    float densidadePopulacional = populacao / area;
-    float pibPerCapita = pib / populacao;
-    float superPoder = populacao + area + pib + numerosDePontosTuristicos + pibPerCapta + densidadePopulacional;
+       // Entrada de dados
+    scanf(" %[^\n]", nome1);
+    scanf("%lu %f %f %d", &pop1, &area1, &pib1, &pontos1);
 
-  printf("Código da cidade: %d\n", codigoDaCidade);
-  printf("Nome da cidade: %s\n", nome);
-  printf("População da cidade: %d\n", populacao);
-  printf("Área da cidade: %.2f km²\n", area);
-  printf("PIB da cidade: %d\n", pib);
-  printf("Número de pontos turísticos: %d\n", numerosDePontosTuristicos);
-  printf("Densidade populacional: %.2f", densidadePopulacional);
-  printf("PIB per Capita: %.2f", pibPerCapta);
+    scanf(" %[^\n]", nome2);
+    scanf("%lu %f %f %d", &pop2, &area2, &pib2, &pontos2);
 
-  return 0;
+    // Calcula atributos derivados
+    dens1 = pop1 / area1;
+    dens2 = pop2 / area2;
+    pc1 = pib1 / pop1;
+    pc2 = pib2 / pop2;
+
+    // Calcula super poder
+    sp1 = pop1 + area1 + pib1 + pontos1 + pc1 + (1.0f / dens1);
+    sp2 = pop2 + area2 + pib2 + pontos2 + pc2 + (1.0f / dens2);
+
+    // Comparações
+    printf("Populacao: %d\n", pop1 > pop2);
+    printf("Area: %d\n", area1 > area2);
+    printf("PIB: %d\n", pib1 > pib2);
+    printf("Pontos Turisticos: %d\n", pontos1 > pontos2);
+    printf("PIB per capita: %d\n", pc1 > pc2);
+    printf("Densidade: %d\n", dens1 < dens2); // menor vence
+    printf("Super Poder: %d\n", sp1 > sp2);
+
+    return 0;
 }
