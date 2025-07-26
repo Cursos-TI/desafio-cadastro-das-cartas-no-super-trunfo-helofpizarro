@@ -3,7 +3,7 @@
 int main() {
     int codigoDaCidade;
     char nome[50];
-    int populacao;
+    unsigned long int populacao;
     float area;
     int pib;
     int numerosDePontosTuristicos;
@@ -29,6 +29,7 @@ int main() {
 
     float densidadePopulacional = populacao / area;
     float pibPerCapita = pib / populacao;
+    float superPoder = populacao + area + pib + numerosDePontosTuristicos + pibPerCapta + densidadePopulacional;
 
   printf("Código da cidade: %d\n", codigoDaCidade);
   printf("Nome da cidade: %s\n", nome);
